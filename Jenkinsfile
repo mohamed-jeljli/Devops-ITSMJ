@@ -1,14 +1,18 @@
 pipeline {
-    agent any
-    tools {
-        maven 'M2_HOME' 
+  agent any
+  tools { maven 'M2_HOME' }
+  stages {
+    stage('Build') {
+      steps {
+        sh 'mvn clean package -Dspring.profiles.active=build'
+      }
     }
-    stages {
-        stage('Build') {
-            steps {
-                sh 'mvn package'
-            }
-        }
+  }
+  post {
+    success {
+      archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
     }
+  }
 }
+
 
