@@ -10,17 +10,15 @@ pipeline {
             }
         }
 
-       stage('MVN SONARQUBE') {
-    steps {
-        sh '''
-            mvn sonar:sonar \
-              -Dsonar.projectKey=student-management \
-              -Dsonar.host.url=http://192.168.1.12:9000 \
-              -Dsonar.login=SONAR-QUBE-TOKEN
-        '''
-    }
-}
-
+        stage('MVN SONARQUBE') {
+            steps {
+                sh '''
+                    mvn sonar:sonar \
+                      -Dsonar.projectKey=student-management \
+                      -Dsonar.host.url=http://192.168.1.12:9000 \
+                      -Dsonar.login=SONAR-QUBE-TOKEN
+                '''
+            }
         }
     }
     post {
@@ -29,8 +27,3 @@ pipeline {
         }
     }
 }
-
-
-
-
-
