@@ -15,7 +15,7 @@ pipeline {
                 sh '''
                     mvn sonar:sonar \
                       -Dsonar.projectKey=student-management \
-                      -Dsonar.host.url=http://192.168.1.12:9000 \
+                      -Dsonar.host.url=http://192.168.33.10:9000 \
                       -Dsonar.login=sqa_2e8090b8e8ceba6142fdfbd839017ccf1bd6a98a
                 '''
             }
