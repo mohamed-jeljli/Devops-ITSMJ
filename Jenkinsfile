@@ -12,17 +12,17 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'mvn package -Dspring.profiles.active=build'
+                sh 'mvn package -Dspring.profiles.active=build -Dmaven.test.skip=true'
             }
         }
 
-       /*stage('SonarQube Analysis') {
+       stage('SonarQube Analysis') {
     steps {
         withSonarQubeEnv('SonarQubeServer') {
             sh 'mvn sonar:sonar -Dsonar.projectKey=student-management'
         }
     }
-}*/
+}
 
     }
     post {
