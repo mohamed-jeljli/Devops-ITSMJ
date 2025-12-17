@@ -25,6 +25,14 @@ pipeline {
                         sh 'mvn package -Dmaven.test.skip=true'
                     }
                 }
+              stage('SonarQube Analysis') {
+                    steps {
+                        withSonarQubeEnv('SonarQubeServer') {
+                        sh 'mvn sonar:sonar -Dsonar.projectKey=student-management'
+                            }
+                    }
+              }
+        
     }
 
     post {
