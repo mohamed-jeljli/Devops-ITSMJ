@@ -3,7 +3,13 @@ pipeline {
     tools {
         maven 'M2_HOME'
     }
+    
     stages {
+        stage('clean') {
+            steps {
+                sh "mvn clean install"
+            }
+        }
         stage('Build') {
             steps {
                 sh 'mvn package -Dspring.profiles.active=build'
