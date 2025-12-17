@@ -1,34 +1,41 @@
 pipeline {
     agent any
+
     tools {
         maven 'M2_HOME'
     }
-    
+
     stages {
-        stage('clean') {
+        stage('Code Checkout') {
             steps {
-                sh "mvn clean install"
-            }
-        }
-        stage('Build') {
-            steps {
-                sh 'mvn package -Dmaven.test.skip=true'
+                git branch: 'main',
+                    url: 'https://github.com/OumaymaBrineg/DEVOPS_PROJECT.git'
+                    // If private repo, add: credentialsId: 'jenkins-example-github-pat'
             }
         }
 
-       stage('SonarQube Analysis') {
-    steps {
-        withSonarQubeEnv('SonarQubeServer') {
-            sh 'mvn sonar:sonar -Dsonar.projectKey=student-management'
+        stage('Code Build') {
+            steps {
+                sh 'mvn install -Dmaven.test.skip=true'
+            }
         }
-    }
-}
 
+         stage('mvn Package') {
+                    steps {
+                        sh 'mvn package -Dmaven.test.skip=true'
+                    }
+                }
     }
+
     post {
+        always {
+            echo "======always======"
+        }
         success {
-            archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+            echo "=====pipeline executed successfully ====="
+        }
+        failure {
+            echo "======pipeline execution failed======"
         }
     }
 }
-
