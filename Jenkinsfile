@@ -12,7 +12,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'mvn package -Dspring.profiles.active=build -Dmaven.test.skip=true'
+                sh 'mvn package -Dmaven.test.skip=true'
             }
         }
 
