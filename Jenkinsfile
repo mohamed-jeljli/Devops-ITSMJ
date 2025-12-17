@@ -10,14 +10,11 @@ pipeline {
             }
         }
 
-        stage('MVN SONARQUBE') {
+        stage('SonarQube Analysis') {
             steps {
-                sh '''
-                    mvn sonar:sonar \
-                      -Dsonar.projectKey=student-management \
-                      -Dsonar.host.url=http://192.168.33.10:9000 \
-                      -Dsonar.login=squ_96c0a10b5ca26ab414605985a8aad3e2e56ae963
-                '''
+                withSonarQubeEnv('SonarQubeServer') {
+                    sh 'mvn sonar:sonar -Dsonar.projectKey=student-management'
+                }
             }
         }
     }
