@@ -10,13 +10,14 @@ pipeline {
             }
         }
 
-        stage('SonarQube Analysis') {
-            steps {
-                withSonarQubeEnv('SonarQubeServer') {
-                    sh 'mvn sonar:sonar -Dsonar.projectKey=student-management'
-                }
-            }
+       stage('SonarQube Analysis') {
+    steps {
+        withSonarQubeEnv('SonarQubeServer') {
+            sh 'mvn sonar:sonar -Dsonar.projectKey=student-management'
         }
+    }
+}
+
     }
     post {
         success {
