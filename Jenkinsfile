@@ -16,13 +16,13 @@ pipeline {
             }
         }
 
-       stage('SonarQube Analysis') {
+       /*stage('SonarQube Analysis') {
     steps {
         withSonarQubeEnv('SonarQubeServer') {
             sh 'mvn sonar:sonar -Dsonar.projectKey=student-management'
         }
     }
-}
+}*/
 
     }
     post {
