@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: springboot-app
-          image: your-dockerhub-username/devops-project:latest
+          image: 1tsmj/mjmjstudentmanagementrepo:latest
           ports:
             - containerPort: 8080
           env:
