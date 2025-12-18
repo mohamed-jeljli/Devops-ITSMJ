@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: springboot-app
+  name: student-management
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: springboot-app
+      app: student-management
   template:
     metadata:
       labels:
@@ -18,9 +18,9 @@ spec:
           ports:
             - containerPort: 8080
           env:
-            - name: SPRING_DATASOURCE_URL
-              value: jdbc:mysql://mysql:3306/devops_db
-            - name: SPRING_DATASOURCE_USERNAME
+            - name: jdbc:mysql://localhost:3306/studentdb?createDatabaseIfNotExist=true
+              value: jdbc:mysql://localhost:3306/studentdb
+            - name: student-management
               value: root
             - name: SPRING_DATASOURCE_PASSWORD
               value: rootpassword
@@ -28,10 +28,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: springboot-app
+  name: student-management
 spec:
   selector:
-    app: springboot-app
+    app: student-management
   ports:
     - port: 8080
       targetPort: 8080

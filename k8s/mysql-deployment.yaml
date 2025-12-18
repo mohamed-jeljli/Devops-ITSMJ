@@ -31,7 +31,7 @@ spec:
             - name: MYSQL_ROOT_PASSWORD
               value: "rootpassword"
             - name: MYSQL_DATABASE
-              value: "devops_db"
+              value: "studentdb"
           ports:
             - containerPort: 3306
           volumeMounts:
