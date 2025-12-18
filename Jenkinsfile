@@ -11,11 +11,13 @@ pipeline {
 
     stages {
         stage('Code Checkout') {
-            steps {
-                echo "Checking out code from GitHub..."
-                git branch: 'main',
-                    url: 'https://github.com/mohamed-jeljli/Devops-ITSMJ.git/'
-            }
+           steps {
+    echo "Checking out code from GitHub..."
+    git branch: 'main',
+        url: 'https://github.com/mohamed-jeljli/Devops-ITSMJ.git',
+        credentialsId: '52eae079-e90f-48cd-af39-2c5a205b6082'
+}
+
         }
 
         stage('Code Build') {
