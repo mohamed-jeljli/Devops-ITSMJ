@@ -64,17 +64,16 @@ pipeline {
             }
         }
 
-stage('Deploy to Kubernetes') {
-    steps {
-        withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
-            sh 'kubectl cluster-info'
-            sh 'kubectl get nodes'
-            sh 'kubectl apply -f k8s/mysql-deployment.yaml'
+        stage('Deploy to Kubernetes') {
+            steps {
+                withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
+                    sh 'kubectl cluster-info'
+                    sh 'kubectl get nodes'
+                    sh 'kubectl apply -f k8s/mysql-deployment.yaml'
+                }
+            }
         }
     }
-}
-
-
 
     post {
         always {
