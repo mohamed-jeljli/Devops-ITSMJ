@@ -11,13 +11,12 @@ pipeline {
 
     stages {
         stage('Code Checkout') {
-           steps {
-             echo "Checking out code from GitHub..."
-             git branch: 'main',
-             url: 'https://github.com/mohamed-jeljli/Devops-ITSMJ.git',
-       
-        }
-
+            steps {
+                echo "Checking out code from GitHub..."
+                git branch: 'main',
+                    url: 'https://github.com/mohamed-jeljli/Devops-ITSMJ.git',
+                    credentialsId: 'github-jenkins-pat'
+            }
         }
 
         stage('Code Build') {
@@ -34,13 +33,13 @@ pipeline {
             }
         }
 
-    stage('SonarQube Analysis') {
-                    steps {
-                        withSonarQubeEnv('SonarQubeServer') {
-                        sh 'mvn sonar:sonar -Dsonar.projectKey=student-management'
-                            }
-                    }
-              }
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('SonarQubeServer') {
+                    sh 'mvn sonar:sonar -Dsonar.projectKey=student-management'
+                }
+            }
+        }
 
         stage('Docker Login') {
             steps {
