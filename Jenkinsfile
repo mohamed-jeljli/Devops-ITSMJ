@@ -64,15 +64,16 @@ pipeline {
             }
         }
 
- stage('Deploy to Kubernetes') {
+stage('Deploy to Kubernetes') {
     steps {
-        echo "Deploying MySQL and Spring Boot app to Kubernetes..."
         withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
+            sh 'kubectl cluster-info'
+            sh 'kubectl get nodes'
             sh 'kubectl apply -f k8s/mysql-deployment.yaml'
-            sh 'kubectl apply -f k8s/app-deployment.yaml'
         }
     }
 }
+
 
 
     post {
