@@ -6,7 +6,7 @@ pipeline {
     }
 
     environment {
-        DOCKER_IMAGE = "1tsmj/Devops-ITSMJ:latest"
+        DOCKER_IMAGE = "1tsmj/devops-itsmj:latest"
     }
 
     stages {
